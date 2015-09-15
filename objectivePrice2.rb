@@ -14,6 +14,8 @@ require "mail"
 require_relative "objectiveSites.rb"
 require_relative "default.rb"
 
+Dir.chdir(File.expand_path(File.dirname(__FILE__)))
+
 # does the config file exist? It better did.
 unless File.exists?("./config.rb")
   puts "It seems that the config file config.rb does not exist. " +
