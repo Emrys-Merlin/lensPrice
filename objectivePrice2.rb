@@ -40,7 +40,7 @@ unless Dir.exists?(Default.path)
     Dir.mkdir Default.path
   rescue SystemCallError
     puts "The directory specified in config.rb cannot be" + 
-         " created. Pleas look into this."
+         " created. Please look into this."
     exit 1
   end
 end
