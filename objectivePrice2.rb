@@ -56,19 +56,22 @@ ObjectiveSites.each do |obj|
     File.open(Default.path + "/" + obj.name, "a+") do |f|
 
       
-      lines = f.lines.to_a
+      lines = f.each_line.to_a
       old_price = 0.0
       unless lines.empty?
-        old_price = lines.last.split("\t").last.to_f
+        old_price = lines.last.split("\t")[1].to_f
       end
 
-      f.puts(DateTime.now.to_s + "\t" + price.to_s)
+      uri = page.links_with(:text => "Zum Shop")[1].click.uri.to_s
+
+      f.puts(DateTime.now.to_s + "\t" + price.to_s + "\t" + uri)
 
       if price < old_price
         send_mail = true
         body += "Name: " + obj.name + "\n" +
                 "Old: " + old_price.to_s + "\n" +
-                "New: " + price.to_s + "\n\n"
+                "New: " + price.to_s + "\n" +
+                "Shop: " + uri + "\n\n"
       end
     end
   end

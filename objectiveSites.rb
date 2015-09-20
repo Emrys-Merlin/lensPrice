@@ -33,7 +33,7 @@ module ObjectiveSites
 
   class Objective
     def initialize(name, options)
-      @name = name
+      @name = name.gsub("/","-")
       @url = options[:url]
       @focus = options[:focus]
       @vendor = options[:vendor]
