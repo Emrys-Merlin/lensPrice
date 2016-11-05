@@ -1,4 +1,4 @@
-module ObjectiveSites
+module LensSites
 
   extend self
 
@@ -11,19 +11,19 @@ module ObjectiveSites
   end
 
 
-  def objective(name, options={})
-    definitions.push(Objective.new(name, options))
+  def lens(name, options={})
+    definitions.push(Lens.new(name, options))
   end
 
   def list
-    definitions.each do |objective|
-      puts objective.to_s
+    definitions.each do |lens|
+      puts lens.to_s
     end
   end
 
   def each
-    definitions.each do |objective|
-      yield objective
+    definitions.each do |lens|
+      yield lens
     end
   end
 
@@ -31,7 +31,7 @@ module ObjectiveSites
     definitions.last
   end
 
-  class Objective
+  class Lens
     def initialize(name, options)
       @name = name.gsub("/","-")
       @url = options[:url]
